@@ -16,11 +16,16 @@ var SIMILAR_WIZARD_LIST = document.querySelector('.setup-similar-list');
 var SIMILAR_WIZARD_TEMPLATE = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 // functions//
+var createRandomNumber = function (array) {
+  var randomNumber = Math.floor(Math.random() * array.length);
+  return randomNumber;
+};
+
 var createWizard = function () {
   var similarCharacter = {
-    name: NAME_LIST[Math.floor(Math.random() * NAME_LIST.length)] + ' ' + SURNAME_LIST[Math.floor(Math.random() * SURNAME_LIST.length)],
-    coatColor: COAT_COLOR_LIST[Math.floor(Math.random() * COAT_COLOR_LIST.length)],
-    eyesColor: EYES_COLOR_LIST[Math.floor(Math.random() * EYES_COLOR_LIST.length)]
+    name: NAME_LIST[createRandomNumber(NAME_LIST)] + ' ' + SURNAME_LIST[createRandomNumber(SURNAME_LIST)],
+    coatColor: COAT_COLOR_LIST[createRandomNumber(COAT_COLOR_LIST)],
+    eyesColor: EYES_COLOR_LIST[createRandomNumber(EYES_COLOR_LIST)]
   };
   return similarCharacter;
 };
@@ -42,7 +47,8 @@ var appendWizard = function () {
   }
 };
 
-// Work with DOM//
+// programm//
+
 SETUP_BLOCK.classList.remove('hidden');
 SETUP_SIMILAR_BLOCK.classList.remove('hidden');
 appendWizard();
