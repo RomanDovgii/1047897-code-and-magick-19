@@ -10,10 +10,10 @@ var COAT_COLOR_LIST = ["rgb(101, 137, 164)", "rgb(241, 43, 107)", "rgb(146, 100,
 var EYES_COLOR_LIST = ["black", "red", "blue", "yellow", "green"];
 
 //DOM elements//
-var setupBlock = document.querySelector(".setup");
-var setupSimilarBlock = document.querySelector(".setup-similar");
-var similarWizardList = document.querySelector(".setup-similar-list");
-var similarWizardTemplate = document.querySelector("#similar-wizard-template").content.querySelector(".setup-similar-item");
+var SETUP_BLOCK = document.querySelector(".setup");
+var SETUP_SIMILAR_BLOCK = document.querySelector(".setup-similar");
+var SIMILAR_WIZARD_LIST = document.querySelector(".setup-similar-list");
+var SIMILAR_WIZARD_TEMPLATE = document.querySelector("#similar-wizard-template").content.querySelector(".setup-similar-item");
 
 //functions//
 var createWizard = function() {
@@ -28,7 +28,7 @@ var createWizard = function() {
 var renderWizard = function() {
   var character = createWizard();
   console.log(character)
-  var similarWizardElement = similarWizardTemplate.cloneNode(true);
+  var similarWizardElement = SIMILAR_WIZARD_TEMPLATE.cloneNode(true);
   similarWizardElement.querySelector(".setup-similar-label").textContent = character.name;
   similarWizardElement.querySelector(".wizard-coat").style.fill = character.coatColor;
   similarWizardElement.querySelector(".wizard-eyes").style.fill = character.eyesColor;
@@ -39,11 +39,11 @@ var renderWizard = function() {
 
 var appendWizard = function () {
   for (var i = 0; i < SIMILAR_CHARACTER_COUNT; i++) {
-  similarWizardList.appendChild(renderWizard());
+  SIMILAR_WIZARD_LIST.appendChild(renderWizard());
   }
 };
 
 //Work with DOM//
-setupBlock.classList.remove("hidden");
-setupSimilarBlock.classList.remove("hidden");
+SETUP_BLOCK.classList.remove("hidden");
+SETUP_SIMILAR_BLOCK.classList.remove("hidden");
 appendWizard();
