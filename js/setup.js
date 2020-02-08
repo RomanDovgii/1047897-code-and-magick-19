@@ -188,8 +188,6 @@ var popupActionsHandler = function () {
   onCoatBlockClick();
 };
 
-
-
 // programm//
 
 
