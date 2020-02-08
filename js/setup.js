@@ -119,7 +119,6 @@ var onUserIconEnterPress = function () {
 var onSubmitButtonClick = function () {
   SETUP_SUBMIT.addEventListener('click', function (evt) {
     evt.preventDefault();
-    fillForm();
     SETUP_FORM.submit();
   });
 };
@@ -138,7 +137,7 @@ var onSubmitButtonEnterPress = function () {
   if ((SETUP_BLOCK.classList.contains('hidden')) && (SETUP_SUBMIT.focused = true)) {
     SETUP_SUBMIT.addEventListener('keydown', function (evt) {
       if (evt.keyCode === ENTER_KEY_CODE) {
-        fillForm();
+        evt.preventDefault();
         SETUP_FORM.submit();
       }
     });
@@ -157,27 +156,28 @@ var popupActionsHandler = function () {
 
 var onCoatBlockClick = function () {
   WIZARD_COAT.addEventListener('click', function () {
-    WIZARD_COAT.style.fill = COAT_COLORS[createRandomNumber(COAT_COLORS)];
+    var randomNumber = createRandomNumber(COAT_COLORS);
+    WIZARD_COAT.style.fill = COAT_COLORS[randomNumber];
+    WIZARD_APPEARANCE.querySelector('input[name="coat-color"]').value = COAT_COLORS[randomNumber];
   });
 };
 
 var onEyesBlockClick = function () {
   WIZARD_EYES.addEventListener('click', function () {
-    WIZARD_EYES.style.fill = EYES_COLORS[createRandomNumber(EYES_COLORS)];
+    var randomNumber = createRandomNumber(EYES_COLORS);
+    WIZARD_EYES.style.fill = EYES_COLORS[randomNumber];
+    WIZARD_APPEARANCE.querySelector('input[name="eyes-color"]').value = EYES_COLORS[randomNumber];
   });
 };
 
 var onFireballBlockClick = function () {
   WIZARD_FIREBALL.addEventListener('click', function () {
-    WIZARD_FIREBALL.style.background = FIREBALL_COLORS[createRandomNumber(FIREBALL_COLORS)];
+    var randomNumber = createRandomNumber(FIREBALL_COLORS);
+    WIZARD_FIREBALL.style.background = FIREBALL_COLORS[randomNumber];
+    WIZARD_FIREBALL.querySelector('input[name="fireball-color"]').value = FIREBALL_COLORS[randomNumber];
   });
 };
 
-var fillForm = function () {
-  WIZARD_APPEARANCE.querySelector('input[name="coat-color"]').value = WIZARD_COAT.style.fill;
-  WIZARD_APPEARANCE.querySelector('input[name="eyes-color"]').value = WIZARD_EYES.style.fill;
-  WIZARD_FIREBALL.querySelector('input[name="fireball-color"]').value = WIZARD_FIREBALL.style.background;
-};
 // programm//
 
 
