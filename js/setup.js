@@ -116,12 +116,16 @@ var onUserIconEnterPress = function () {
   });
 };
 
+// submit handler on click //
+
 var onSubmitButtonClick = function () {
   SETUP_SUBMIT.addEventListener('click', function (evt) {
     evt.preventDefault();
     SETUP_FORM.submit();
   });
 };
+
+// submit handler on press enter key //
 
 var onSubmitButtonEnterPress = function () {
   SETUP_SUBMIT.focused = false;
@@ -144,16 +148,7 @@ var onSubmitButtonEnterPress = function () {
   }
 };
 
-var popupActionsHandler = function () {
-  onCloseButtonClick();
-  onCloseButtonEnterPress();
-  onUserIconClick();
-  onUserIconEnterPress();
-  onSubmitButtonClick();
-  onSubmitButtonEnterPress();
-  onDocumentEscPress();
-};
-
+// character setup - coat //
 var onCoatBlockClick = function () {
   WIZARD_COAT.addEventListener('click', function () {
     var randomNumber = createRandomNumber(COAT_COLORS);
@@ -162,6 +157,7 @@ var onCoatBlockClick = function () {
   });
 };
 
+// character setup - eyes //
 var onEyesBlockClick = function () {
   WIZARD_EYES.addEventListener('click', function () {
     var randomNumber = createRandomNumber(EYES_COLORS);
@@ -170,6 +166,7 @@ var onEyesBlockClick = function () {
   });
 };
 
+// character setup - fireball //
 var onFireballBlockClick = function () {
   WIZARD_FIREBALL.addEventListener('click', function () {
     var randomNumber = createRandomNumber(FIREBALL_COLORS);
@@ -178,13 +175,26 @@ var onFireballBlockClick = function () {
   });
 };
 
+var popupActionsHandler = function () {
+  onCloseButtonClick();
+  onCloseButtonEnterPress();
+  onUserIconClick();
+  onUserIconEnterPress();
+  onSubmitButtonClick();
+  onSubmitButtonEnterPress();
+  onDocumentEscPress();
+  onFireballBlockClick();
+  onEyesBlockClick();
+  onCoatBlockClick();
+};
+
+
+
 // programm//
 
 
 SETUP_SIMILAR_BLOCK.classList.remove('hidden');
 
-onFireballBlockClick();
-onEyesBlockClick();
-onCoatBlockClick();
+
 popupActionsHandler();
 appendWizard();
