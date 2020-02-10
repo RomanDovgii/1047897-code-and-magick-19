@@ -70,18 +70,19 @@ var closePopup = function () {
 };
 
 var onDocumentEscPress = function () {
-  SETUP_USER_NAME.focused = false;
+  var isFocused = SETUP_USER_NAME;
+  isFocused.focused = false;
 
-  SETUP_USER_NAME.addEventListener('focus', function () {
-    SETUP_USER_NAME.focused = true;
+  isFocused.addEventListener('focus', function () {
+    isFocused.focused = true;
   });
 
-  SETUP_USER_NAME.addEventListener('blur', function () {
-    SETUP_USER_NAME.focused = false;
+  isFocused.addEventListener('blur', function () {
+    isFocused.focused = false;
   });
 
   document.addEventListener('keydown', function (evt) {
-    if ((evt.keyCode === ESC_KEY_CODE) && (SETUP_USER_NAME.focused === false) && (SETUP_BLOCK.classList.contains('hidden') === false)) {
+    if ((evt.keyCode === ESC_KEY_CODE) && (isFocused.focused === false) && (SETUP_BLOCK.classList.contains('hidden') === false)) {
       closePopup();
     }
   });
