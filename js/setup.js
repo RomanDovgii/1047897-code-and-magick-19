@@ -18,7 +18,6 @@ var SIMILAR_WIZARD_TEMPLATE = document.querySelector('#similar-wizard-template')
 var SETUP_USER_NAME = document.querySelector('.setup-user-name');
 var SETUP_OPEN_ICON = document.querySelector('.setup-open-icon');
 var CLOSE_SETUP_BLOCK = document.querySelector('.setup-close');
-var SETUP_SUBMIT = document.querySelector('.setup-submit');
 var SETUP_FORM = document.querySelector('.setup-wizard-form');
 var WIZARD_COAT = SETUP_FORM.querySelector('.wizard-coat');
 var WIZARD_EYES = SETUP_FORM.querySelector('.wizard-eyes');
@@ -73,13 +72,13 @@ var closePopup = function () {
 var onDocumentEscPress = function () {
   SETUP_USER_NAME.focused = false;
 
-  SETUP_USER_NAME.onfocus = function () {
-    this.focused = true;
-  };
+  SETUP_USER_NAME.addEventListener('focus', function () {
+    SETUP_USER_NAME.focused = true;
+  });
 
-  SETUP_USER_NAME.onblur = function () {
-    this.focused = false;
-  };
+  SETUP_USER_NAME.addEventListener('blur', function () {
+    SETUP_USER_NAME.focused = false;
+  });
 
   document.addEventListener('keydown', function (evt) {
     if ((evt.keyCode === ESC_KEY_CODE) && (SETUP_USER_NAME.focused === false) && (SETUP_BLOCK.classList.contains('hidden') === false)) {
@@ -116,37 +115,6 @@ var onUserIconEnterPress = function () {
   });
 };
 
-// submit handler on click //
-
-var onSubmitButtonClick = function () {
-  SETUP_SUBMIT.addEventListener('click', function (evt) {
-    evt.preventDefault();
-    SETUP_FORM.submit();
-  });
-};
-
-// submit handler on press enter key //
-
-var onSubmitButtonEnterPress = function () {
-  SETUP_SUBMIT.focused = false;
-
-  SETUP_SUBMIT.onfocus = function () {
-    this.focused = true;
-  };
-
-  SETUP_SUBMIT.onblur = function () {
-    this.focused = false;
-  };
-
-  if ((SETUP_BLOCK.classList.contains('hidden')) && (SETUP_SUBMIT.focused = true)) {
-    SETUP_SUBMIT.addEventListener('keydown', function (evt) {
-      if (evt.keyCode === ENTER_KEY_CODE) {
-        evt.preventDefault();
-        SETUP_FORM.submit();
-      }
-    });
-  }
-};
 
 // character setup - coat //
 var onCoatBlockClick = function () {
@@ -180,8 +148,6 @@ var popupActionsHandler = function () {
   onCloseButtonEnterPress();
   onUserIconClick();
   onUserIconEnterPress();
-  onSubmitButtonClick();
-  onSubmitButtonEnterPress();
   onDocumentEscPress();
   onFireballBlockClick();
   onEyesBlockClick();
