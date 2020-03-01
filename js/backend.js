@@ -7,11 +7,7 @@
   var SUBMIT_BUTTON = FORM.querySelector('.setup-submit');
 
   var renderError = function (errorMessage) {
-    var ERROR_BLOCK = document.querySelector('.error-block');
-
-    if (ERROR_BLOCK !== null) {
-      ERROR_BLOCK.remove();
-    }
+    removeError();
 
     var errorBlock = document.createElement('div');
     errorBlock.style = 'z-index: 50; margin: 0 auto; text-align: center; background-color: #DA641A; width: 100%;';
@@ -26,17 +22,25 @@
     SUBMIT_BUTTON.disabled = false;
   };
 
+  var removeError = function () {
+    var ERROR_BLOCK = document.querySelector('.error-block');
+
+    if (ERROR_BLOCK !== null) {
+      ERROR_BLOCK.remove();
+    }
+  };
+
   window.backend = {
     upload: function (data, onSuccess) {
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
-
 
       xhr.addEventListener('load', function () {
         if (xhr.status > 200) {
           renderError('Произошла ошибка');
         } else {
           onSuccess(xhr.response);
+          removeError();
         }
 
       });
@@ -55,6 +59,7 @@
           renderError('Произошла ошибка');
         } else {
           onSuccess(xhr.response);
+          removeError();
         }
       });
 
