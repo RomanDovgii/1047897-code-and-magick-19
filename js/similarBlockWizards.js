@@ -33,7 +33,7 @@
     }
   };
 
-  window.load(function (wizards) {
+  window.backend.load(function (wizards) {
     appendWizard(wizards);
   });
 })();

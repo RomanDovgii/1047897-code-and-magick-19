@@ -8,7 +8,7 @@
     SUBMIT_BUTTON.textContent = 'Данные сохраняются...';
     SUBMIT_BUTTON.disabled = true;
 
-    window.upload(new FormData(FORM), function () {
+    window.backend.upload(new FormData(FORM), function () {
       window.popupCloser();
       SUBMIT_BUTTON.textContent = 'Сохранить';
       SUBMIT_BUTTON.disabled = false;
