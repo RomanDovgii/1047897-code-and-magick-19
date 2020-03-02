@@ -23,10 +23,10 @@
   };
 
   var removeError = function () {
-    var ERROR_BLOCK = document.querySelector('.error-block');
+    var errorBlock = document.querySelector('.error-block');
 
-    if (ERROR_BLOCK !== null) {
-      ERROR_BLOCK.remove();
+    if (errorBlock !== null) {
+      errorBlock.remove();
     }
   };
 
