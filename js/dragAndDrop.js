@@ -5,8 +5,8 @@
   var SETUP_UPLOAD = document.querySelector('.upload');
 
   var resetCoords = {
-    x: SETUP.style.top,
-    y: SETUP.style.left,
+    x: SETUP.style.left,
+    y: SETUP.style.top,
   };
 
   SETUP_UPLOAD.addEventListener('mousedown', function (evt) {
@@ -33,8 +33,8 @@
         y: moveEvt.clientY
       };
 
-      SETUP.style.top = (SETUP.offsetTop - shift.y) + 'px';
       SETUP.style.left = (SETUP.offsetLeft - shift.x) + 'px';
+      SETUP.style.top = (SETUP.offsetTop - shift.y) + 'px';
     };
 
     var onMouseUp = function (upEvt) {
