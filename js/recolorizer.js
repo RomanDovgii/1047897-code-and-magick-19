@@ -19,6 +19,10 @@
     updateSimilarWizards();
   };
 
+  var debounce = window.debounce(function () {
+    updateSimilarWizards();
+  });
+
   var getRank = function (wizard) {
     var rank = 0;
 
@@ -77,7 +81,7 @@
         WIZARD_COAT.style.fill = window.util.COAT_COLORS[randomNumber];
         WIZARD_APPEARANCE.querySelector('input[name="coat-color"]').value = window.util.COAT_COLORS[randomNumber];
         exportElementColor(WIZARD_COAT, randomNumber);
-        window.debounce(updateSimilarWizards());
+        debounce();
       });
     },
     eyes: function () {
@@ -86,7 +90,7 @@
         WIZARD_EYES.style.fill = window.util.EYES_COLORS[randomNumber];
         WIZARD_APPEARANCE.querySelector('input[name="eyes-color"]').value = window.util.EYES_COLORS[randomNumber];
         exportElementColor(WIZARD_EYES, randomNumber);
-        window.debounce(updateSimilarWizards());
+        debounce();
       });
     },
     fireball: function () {

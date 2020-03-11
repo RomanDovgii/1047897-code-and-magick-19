@@ -40,28 +40,30 @@ var getMaxElement = function (arr) {
 };
 
 var renderStatistics = function (ctx, names, times) {
-  renderCloud(ctx, CLOUD_X + CLOUD_SHADOW_SHIFT, CLOUD_Y + CLOUD_SHADOW_SHIFT, CLOUD_SHADOW_COLOR);
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, CLOUD_COLOR);
+  if (ctx !== undefined) {
+    renderCloud(ctx, CLOUD_X + CLOUD_SHADOW_SHIFT, CLOUD_Y + CLOUD_SHADOW_SHIFT, CLOUD_SHADOW_COLOR);
+    renderCloud(ctx, CLOUD_X, CLOUD_Y, CLOUD_COLOR);
 
-  var maxTime = getMaxElement(times);
+    var maxTime = getMaxElement(times);
 
-  ctx.font = FONT_STYLE;
-  ctx.fillStyle = FONT_COLOR;
-  ctx.fillText(TEXT_CONGRATS, CLOUD_X + SHIFT * 2, CLOUD_Y + SHIFT * 4);
-  ctx.fillText(TEXT_STATS, CLOUD_X + SHIFT * 2, CLOUD_Y + SHIFT * 6);
-  ctx.font = '';
-
-  for (var i = 0; i < names.length; i++) {
+    ctx.font = FONT_STYLE;
     ctx.fillStyle = FONT_COLOR;
-    ctx.fillText(names[i], CLOUD_X + (BAR_WIDTH + BAR_GAP) * (i + 1) - BAR_GAP, CLOUD_Y + CLOUD_HEIGHT - SHIFT * 1);
-    ctx.fillText(Math.round(times[i]), CLOUD_X + (BAR_WIDTH + BAR_GAP) * (i + 1) - BAR_GAP, CLOUD_Y + CLOUD_HEIGHT - SHIFT * 4 - (BAR_MAX_HEIGHT * times[i]) / maxTime);
-    if (names[i] === 'Вы') {
-      ctx.fillStyle = BAR_COLOR_YOU;
-    } else {
-      var l = Math.floor(Math.random() * 60) + 20;
-      ctx.fillStyle = 'hsl(229, 100%, ' + l.toString() + '%)';
+    ctx.fillText(TEXT_CONGRATS, CLOUD_X + SHIFT * 2, CLOUD_Y + SHIFT * 4);
+    ctx.fillText(TEXT_STATS, CLOUD_X + SHIFT * 2, CLOUD_Y + SHIFT * 6);
+    ctx.font = '';
+
+    for (var i = 0; i < names.length; i++) {
+      ctx.fillStyle = FONT_COLOR;
+      ctx.fillText(names[i], CLOUD_X + (BAR_WIDTH + BAR_GAP) * (i + 1) - BAR_GAP, CLOUD_Y + CLOUD_HEIGHT - SHIFT * 1);
+      ctx.fillText(Math.round(times[i]), CLOUD_X + (BAR_WIDTH + BAR_GAP) * (i + 1) - BAR_GAP, CLOUD_Y + CLOUD_HEIGHT - SHIFT * 4 - (BAR_MAX_HEIGHT * times[i]) / maxTime);
+      if (names[i] === 'Вы') {
+        ctx.fillStyle = BAR_COLOR_YOU;
+      } else {
+        var l = Math.floor(Math.random() * 60) + 20;
+        ctx.fillStyle = 'hsl(229, 100%, ' + l.toString() + '%)';
+      }
+      ctx.fillRect(CLOUD_X + ((BAR_WIDTH + BAR_GAP) * (i + 1)) - BAR_GAP, CLOUD_Y + CLOUD_HEIGHT - BAR_MAX_HEIGHT - SHIFT * 3 + (BAR_MAX_HEIGHT - (BAR_MAX_HEIGHT * times[i]) / maxTime), BAR_WIDTH, (BAR_MAX_HEIGHT * times[i]) / maxTime, BAR_MAX_HEIGHT);
     }
-    ctx.fillRect(CLOUD_X + ((BAR_WIDTH + BAR_GAP) * (i + 1)) - BAR_GAP, CLOUD_Y + CLOUD_HEIGHT - BAR_MAX_HEIGHT - SHIFT * 3 + (BAR_MAX_HEIGHT - (BAR_MAX_HEIGHT * times[i]) / maxTime), BAR_WIDTH, (BAR_MAX_HEIGHT * times[i]) / maxTime, BAR_MAX_HEIGHT);
   }
 };
 
